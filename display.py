@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
+import os
 import sys
+from tkinter import filedialog
 
 # Form implementation generated from reading ui file 'untitled.ui'
 #
@@ -10,10 +12,17 @@ import sys
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QApplication, QMainWindow
+import tkinter as tk
+from tkinter import filedialog
+from tool import method
 
 
 class Ui_MainWindow(object):
+    origin_path = ""
+    save_path = ""
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1042, 931)
@@ -42,7 +51,7 @@ class Ui_MainWindow(object):
         self.comboBox = QtWidgets.QComboBox(self.centralwidget)
         self.comboBox.setGeometry(QtCore.QRect(120, 70, 261, 31))
         self.comboBox.setObjectName("comboBox")
-        self.pushButton = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton = QtWidgets.QPushButton(self.centralwidget, clicked=lambda: self.press_it())
         self.pushButton.setGeometry(QtCore.QRect(400, 70, 91, 31))
         self.pushButton.setObjectName("pushButton")
         self.label_3 = QtWidgets.QLabel(self.centralwidget)
@@ -51,13 +60,13 @@ class Ui_MainWindow(object):
         self.label_6 = QtWidgets.QLabel(self.centralwidget)
         self.label_6.setGeometry(QtCore.QRect(540, 70, 101, 31))
         self.label_6.setObjectName("label_6")
-        self.pushButton_3 = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_3 = QtWidgets.QPushButton(self.centralwidget, clicked=lambda: self.press_it_2())
         self.pushButton_3.setGeometry(QtCore.QRect(930, 70, 91, 31))
         self.pushButton_3.setObjectName("pushButton_3")
         self.comboBox_2 = QtWidgets.QComboBox(self.centralwidget)
         self.comboBox_2.setGeometry(QtCore.QRect(650, 70, 261, 31))
         self.comboBox_2.setObjectName("comboBox_2")
-        self.pushButton_4 = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_4 = QtWidgets.QPushButton(self.centralwidget, clicked=lambda: self.press_it_3())
         self.pushButton_4.setGeometry(QtCore.QRect(770, 630, 251, 221))
         self.pushButton_4.setObjectName("pushButton_4")
         self.label_11 = QtWidgets.QLabel(self.centralwidget)
@@ -312,8 +321,6 @@ class Ui_MainWindow(object):
         self.label_20.setText(_translate("MainWindow", "图像平移_Y轴："))
         self.label_19.setText(_translate("MainWindow", "图像放缩："))
 
-
-
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
@@ -363,31 +370,96 @@ class Ui_MainWindow(object):
         self.horizontalSlider_9.valueChanged.connect(self.slot9)
         self.horizontalSlider_10.valueChanged.connect(self.slot10)
         self.horizontalSlider_11.valueChanged.connect(self.slot11)
+        self.pushButton_1.clicked.connect(self.task_1)
+        self.pushButton_2.clicked.connect(self.task_2)
 
-    def  slot1(self):
+    def slot1(self):
         self.lineEdit_2.setText(str(self.horizontalSlider_1.value()))
-    def  slot2(self):
+
+    def slot2(self):
         self.lineEdit_3.setText(str(self.horizontalSlider_2.value()))
-    def  slot3(self):
+
+    def slot3(self):
         self.lineEdit_4.setText(str(self.horizontalSlider_3.value()))
-    def  slot4(self):
+
+    def slot4(self):
         self.lineEdit_5.setText(str(self.horizontalSlider_4.value()))
-    def  slot5(self):
+
+    def slot5(self):
         self.lineEdit_6.setText(str(self.horizontalSlider_5.value()))
-    def  slot6(self):
+
+    def slot6(self):
         self.lineEdit_7.setText(str(self.horizontalSlider_6.value()))
-    def  slot7(self):
+
+    def slot7(self):
         self.lineEdit_8.setText(str(self.horizontalSlider_7.value()))
-    def  slot8(self):
+
+    def slot8(self):
         self.lineEdit_9.setText(str(self.horizontalSlider_8.value()))
-    def  slot9(self):
+
+    def slot9(self):
         self.lineEdit_10.setText(str(self.horizontalSlider_9.value()))
-    def  slot10(self):
+
+    def slot10(self):
         self.lineEdit_11.setText(str(self.horizontalSlider_10.value()))
-    def  slot11(self):
+
+    def slot11(self):
         self.lineEdit_12.setText(str(self.horizontalSlider_11.value()))
 
+    def task_1(self):
+        root = tk.Tk()
+        root.withdraw()
+        # 获取文件夹路径
+        self.origin_path = filedialog.askdirectory()  # 获得选择好的文件夹
+        print("当前路径为：" + self.origin_path)
+        path = self.origin_path + "//Images"
+        content_list = os.listdir(path)
+        for i in range(len(content_list)):
+            self.comboBox.addItem(str(content_list[i]))
 
+    def task_2(self):
+        root = tk.Tk()
+        root.withdraw()
+        # 获取文件夹路径
+        self.save_path = filedialog.askdirectory()  # 获得选择好的文件夹
+        print("当前路径为：" + self.save_path)
+        path = self.save_path + "//Images"
+        content_list = os.listdir(path)
+        for i in range(len(content_list)):
+            self.comboBox_2.addItem(str(content_list[i]))
+
+    def press_it(self):
+        img_name = self.comboBox.currentText()
+        img_path = self.origin_path + '//Images\\\\' + img_name
+        self.label_1.setScaledContents(True)
+        self.label_1.setPixmap(QPixmap(img_path))
+
+    def press_it_2(self):
+        img_name = self.comboBox_2.currentText()
+        img_path = self.save_path + '//Images\\\\' + img_name
+        self.label_2.setScaledContents(True)
+        self.label_2.setPixmap(QPixmap(img_path))
+
+    def press_it_3(self):
+        tfList = []
+        valueList = []
+        tfList.append(self.checkBox_1.isChecked())
+        tfList.append(self.checkBox_2.isChecked())
+        tfList.append(self.checkBox_3.isChecked())
+        tfList.append(self.checkBox_4.isChecked())
+        tfList.append(self.checkBox_5.isChecked())
+        tfList.append(self.checkBox_6.isChecked())
+        tfList.append(self.checkBox_7.isChecked())
+        tfList.append(self.checkBox_8.isChecked())
+        tfList.append(self.checkBox_9.isChecked())
+        tfList.append(self.checkBox_10.isChecked())
+        tfList.append(self.checkBox_11.isChecked())
+
+        method.imgaug(self.origin_path,self.save_path,tfList,valueList,int(self.lineEdit.text()))
+        path = self.save_path + "//Images"
+        content_list = os.listdir(path)
+        for i in range(len(content_list)):
+            self.comboBox_2.addItem(str(content_list[i]))
 
 
 if __name__ == '__main__':
