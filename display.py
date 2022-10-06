@@ -13,7 +13,7 @@ from tkinter import filedialog
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QPixmap
-from PyQt5.QtWidgets import QApplication, QMainWindow
+from PyQt5.QtWidgets import QApplication, QMainWindow, QSlider
 import tkinter as tk
 from tkinter import filedialog
 from tool import method
@@ -380,27 +380,43 @@ class Ui_MainWindow(object):
         content_list = os.listdir(path)
         for i in range(len(content_list)):
             self.comboBox_2.addItem(str(content_list[i]))
+        self.horizontalSlider_1.setMaximum(10)
+        self.horizontalSlider_2.setMaximum(10)
+        self.horizontalSlider_3.setMaximum(100)
+        self.horizontalSlider_4.setMaximum(10)
+        self.horizontalSlider_4.setMinimum(-10)
+        self.horizontalSlider_5.setMaximum(10)
+        self.horizontalSlider_6.setMaximum(10)
+        self.horizontalSlider_7.setMaximum(10)
+        self.horizontalSlider_8.setMaximum(50)
+        self.horizontalSlider_8.setMinimum(-50)
+        self.horizontalSlider_9.setMaximum(100)
+        self.horizontalSlider_9.setMinimum(-100)
+        self.horizontalSlider_10.setMaximum(10)
+        self.horizontalSlider_10.setMinimum(-10)
+        self.horizontalSlider_11.setMaximum(20)
+
 
     def slot1(self):
-        self.lineEdit_2.setText(str(self.horizontalSlider_1.value()))
+        self.lineEdit_2.setText(str(self.horizontalSlider_1.value()/10))
 
     def slot2(self):
-        self.lineEdit_3.setText(str(self.horizontalSlider_2.value()))
+        self.lineEdit_3.setText(str(self.horizontalSlider_2.value()/10))
 
     def slot3(self):
         self.lineEdit_4.setText(str(self.horizontalSlider_3.value()))
 
     def slot4(self):
-        self.lineEdit_5.setText(str(self.horizontalSlider_4.value()))
+        self.lineEdit_5.setText(str(self.horizontalSlider_4.value()/10))
 
     def slot5(self):
-        self.lineEdit_6.setText(str(self.horizontalSlider_5.value()))
+        self.lineEdit_6.setText(str(self.horizontalSlider_5.value()/10))
 
     def slot6(self):
-        self.lineEdit_7.setText(str(self.horizontalSlider_6.value()))
+        self.lineEdit_7.setText(str(self.horizontalSlider_6.value()/10))
 
     def slot7(self):
-        self.lineEdit_8.setText(str(self.horizontalSlider_7.value()))
+        self.lineEdit_8.setText(str(self.horizontalSlider_7.value()/10))
 
     def slot8(self):
         self.lineEdit_9.setText(str(self.horizontalSlider_8.value()))
@@ -409,10 +425,10 @@ class Ui_MainWindow(object):
         self.lineEdit_10.setText(str(self.horizontalSlider_9.value()))
 
     def slot10(self):
-        self.lineEdit_11.setText(str(self.horizontalSlider_10.value()))
+        self.lineEdit_11.setText(str(self.horizontalSlider_10.value()/10))
 
     def slot11(self):
-        self.lineEdit_12.setText(str(self.horizontalSlider_11.value()))
+        self.lineEdit_12.setText(str(self.horizontalSlider_11.value()/10))
 
     def task_1(self):
         root = tk.Tk()
@@ -462,20 +478,20 @@ class Ui_MainWindow(object):
         tfList.append(self.checkBox_9.isChecked())
         tfList.append(self.checkBox_10.isChecked())
         tfList.append(self.checkBox_11.isChecked())
-        valueList.append(self.horizontalSlider_1.value())
-        valueList.append(self.horizontalSlider_2.value())
+        valueList.append(self.horizontalSlider_1.value()/10)
+        valueList.append(self.horizontalSlider_2.value()/10)
         valueList.append(self.horizontalSlider_3.value())
-        valueList.append(self.horizontalSlider_4.value())
-        valueList.append(self.horizontalSlider_5.value())
-        valueList.append(self.horizontalSlider_6.value())
-        valueList.append(self.horizontalSlider_7.value())
+        valueList.append(self.horizontalSlider_4.value()/10)
+        valueList.append(self.horizontalSlider_5.value()/10)
+        valueList.append(self.horizontalSlider_6.value()/10)
+        valueList.append(self.horizontalSlider_7.value()/10)
         valueList.append(self.horizontalSlider_8.value())
         valueList.append(self.horizontalSlider_9.value())
-        valueList.append(self.horizontalSlider_10.value())
-        valueList.append(self.horizontalSlider_11.value())
+        valueList.append(self.horizontalSlider_10.value()/10)
+        valueList.append(self.horizontalSlider_11.value()/10)
 
 
-        # method.imgaug(self.origin_path,self.save_path,tfList,valueList,int(self.lineEdit.text()))
+        method.imgaug(self.origin_path,self.save_path,tfList,valueList,int(self.lineEdit.text()))
         path = self.save_path + "//Images"
         content_list = os.listdir(path)
         for i in range(len(content_list)):

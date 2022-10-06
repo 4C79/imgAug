@@ -1,7 +1,7 @@
 <annotation>
 	<folder>Images</folder>
 	<filename>apple_1_4.jpg</filename>
-	<path>C:/individual/projects/imgAug/AUG//Annotationsapple_1_4.jpg</path>
+	<path>AUG//Annotationsapple_1_4.jpg</path>
 	<source>
 		<database>Unknown</database>
 	</source>
@@ -17,10 +17,10 @@
 		<truncated>0</truncated>
 		<difficult>0</difficult>
 		<bndbox>
-			<xmin>64</xmin>
-			<ymin>162</ymin>
-			<xmax>420</xmax>
-			<ymax>468</ymax>
+			<xmin>164</xmin>
+			<ymin>261</ymin>
+			<xmax>500</xmax>
+			<ymax>499</ymax>
 		</bndbox>
 	</object>
 </annotation>

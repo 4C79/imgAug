@@ -142,48 +142,48 @@ def imgaug(origin_path, save_path, tfList, valueList,AUGLOOP):
 
     # 增强控制
 
-    # 将图像镜像翻转（水平）,参数表示翻转图片的概率
+    # 将图像镜像翻转（水平）,参数表示翻转图片的概率 0-1
     if c_contrast_horizon == True:
-        seq.append(iaa.Sequential([iaa.Fliplr(0.5)]))
-    # 将图像镜像翻转（垂直）,参数表示翻转图片的概率
+        seq.append(iaa.Sequential([iaa.Fliplr(float(valueList[6]))]))
+    # 将图像镜像翻转（垂直）,参数表示翻转图片的概率 0-1
     if c_contrast_vertical == True:
-        seq.append(iaa.Sequential([iaa.Flipud(0.5)]))
+        seq.append(iaa.Sequential([iaa.Flipud(float(valueList[1]))]))
 
-    # 将图像像素反转，即将像素变为 255-x ，参数表示图像转换的概率
+    # 将图像像素反转，即将像素变为 255-x ，参数表示图像转换的概率 0-1
     if c_invert == True:
-        seq.append(iaa.Sequential([iaa.Invert(1)]))
+        seq.append(iaa.Sequential([iaa.Invert(float(valueList[4]))]))
 
     # 变换图像中每个像素的像素值，参数表示增减多少（-20，20），per_channel表示是否所有通道均变化
     if c_increase == True:
-        seq.append(iaa.Sequential([iaa.Add(100, per_channel=False)]))
+        seq.append(iaa.Sequential([iaa.Add(float(valueList[8]), per_channel=True)]))
 
     # 压缩图像，值代表程度 0-100
     if c_jpegCompression == True:
-        seq.append(iaa.Sequential([iaa.JpegCompression(20)]))
+        seq.append(iaa.Sequential([iaa.JpegCompression(float(valueList[2]))]))
 
     # 对图像增加高斯模糊 , scale = 0.0 - 1
     if c_GaussianNoise == True:
-        seq.append(iaa.Sequential([iaa.AdditiveGaussianNoise(scale=0.1 * 255)]))
+        seq.append(iaa.Sequential([iaa.AdditiveGaussianNoise(scale=float(valueList[0]) * 255)]))
 
     # 随机丢失像素，第一个参数表示丢失的数量，第二个表示在分辨率为size_percent下进行丢失
     if c_CoarseDropout == True:
-        seq.append(iaa.Sequential([iaa.CoarseDropout(0.2, size_percent=0.5)]))
+        seq.append(iaa.Sequential([iaa.CoarseDropout(float(valueList[5]), size_percent=0.5)]))
 
     # 对比度增强，范围在 0.5 - 1.5 之间
     if c_ContrastNormalization == True:
-        seq.append(iaa.Sequential([iaa.ContrastNormalization((0.2, 1.8))]))
+        seq.append(iaa.Sequential([iaa.ContrastNormalization((float(valueList[7])-0.2,float(valueList[7])+0.2))]))
 
     # 缩放，范围在 0.5 - 1.5 之间
     if c_Affine == True:
-        seq.append(iaa.Sequential([iaa.Affine(scale=(0.5, 1.5))]))
+        seq.append(iaa.Sequential([iaa.Affine(scale=(float(valueList[10])-0.2, float(valueList[10])+0.2))]))
 
-    # 平移 X 轴 ，范围在 -0.2 - 0.2 之间
+    # 平移 X 轴 ，范围在 -1 - 1 之间
     if c_translate_x == True:
-        seq.append(iaa.Sequential([iaa.Affine(translate_percent={"x": (-0.2, 0.2)})]))
+        seq.append(iaa.Sequential([iaa.Affine(translate_percent={"x": (float(valueList[3]))})]))
 
-    # 平移 Y 轴 ，范围在 -0.2 - 0.2 之间
+    # 平移 Y 轴 ，范围在 -1 - 1 之间
     if c_translate_y == True:
-        seq.append(iaa.Sequential([iaa.Affine(translate_percent={"y": (-0.2, 0.2)})]))
+        seq.append(iaa.Sequential([iaa.Affine(translate_percent={"y": (float(valueList[9]))})]))
 
     for name in tqdm(os.listdir(XML_DIR), desc='Processing'):
 
