@@ -20,8 +20,8 @@ from tool import method
 
 
 class Ui_MainWindow(object):
-    origin_path = ""
-    save_path = ""
+    origin_path = "data"
+    save_path = "AUG"
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -372,6 +372,14 @@ class Ui_MainWindow(object):
         self.horizontalSlider_11.valueChanged.connect(self.slot11)
         self.pushButton_1.clicked.connect(self.task_1)
         self.pushButton_2.clicked.connect(self.task_2)
+        path = self.origin_path + "//Images"
+        content_list = os.listdir(path)
+        for i in range(len(content_list)):
+            self.comboBox.addItem(str(content_list[i]))
+        path = self.save_path + "//Images"
+        content_list = os.listdir(path)
+        for i in range(len(content_list)):
+            self.comboBox_2.addItem(str(content_list[i]))
 
     def slot1(self):
         self.lineEdit_2.setText(str(self.horizontalSlider_1.value()))
@@ -454,8 +462,20 @@ class Ui_MainWindow(object):
         tfList.append(self.checkBox_9.isChecked())
         tfList.append(self.checkBox_10.isChecked())
         tfList.append(self.checkBox_11.isChecked())
+        valueList.append(self.horizontalSlider_1.value())
+        valueList.append(self.horizontalSlider_2.value())
+        valueList.append(self.horizontalSlider_3.value())
+        valueList.append(self.horizontalSlider_4.value())
+        valueList.append(self.horizontalSlider_5.value())
+        valueList.append(self.horizontalSlider_6.value())
+        valueList.append(self.horizontalSlider_7.value())
+        valueList.append(self.horizontalSlider_8.value())
+        valueList.append(self.horizontalSlider_9.value())
+        valueList.append(self.horizontalSlider_10.value())
+        valueList.append(self.horizontalSlider_11.value())
 
-        method.imgaug(self.origin_path,self.save_path,tfList,valueList,int(self.lineEdit.text()))
+
+        # method.imgaug(self.origin_path,self.save_path,tfList,valueList,int(self.lineEdit.text()))
         path = self.save_path + "//Images"
         content_list = os.listdir(path)
         for i in range(len(content_list)):
