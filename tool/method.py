@@ -123,6 +123,9 @@ def imgaug(origin_path, save_path, tfList, valueList,AUGLOOP):
     c_translate_x = tfList[3]
     # Y轴平移
     c_translate_y = tfList[9]
+    # 图像旋转
+    c_rotation = tfList[11]
+
     # 解析源文件
     try:
         shutil.rmtree(AUG_XML_DIR)
@@ -184,6 +187,12 @@ def imgaug(origin_path, save_path, tfList, valueList,AUGLOOP):
     # 平移 Y 轴 ，范围在 -1 - 1 之间
     if c_translate_y == True:
         seq.append(iaa.Sequential([iaa.Affine(translate_percent={"y": (float(valueList[9]))})]))
+
+    # 旋转图像，范围在 -180 - 180 之间
+    if c_rotation == True:
+        seq.append(iaa.Sequential([iaa.Affine(rotate=float(valueList[11]))]))
+
+
 
     for name in tqdm(os.listdir(XML_DIR), desc='Processing'):
 

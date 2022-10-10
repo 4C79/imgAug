@@ -22,7 +22,7 @@ from tool import method
 class Ui_MainWindow(object):
     origin_path = "data"
     save_path = "AUG"
-
+    test_path = "test"
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1042, 931)
@@ -69,6 +69,9 @@ class Ui_MainWindow(object):
         self.pushButton_4 = QtWidgets.QPushButton(self.centralwidget, clicked=lambda: self.press_it_3())
         self.pushButton_4.setGeometry(QtCore.QRect(770, 630, 251, 221))
         self.pushButton_4.setObjectName("pushButton_4")
+        self.pushButton_5 = QtWidgets.QPushButton(self.centralwidget, clicked=lambda: self.press_it_4())
+        self.pushButton_5.setGeometry(QtCore.QRect(850, 590, 93, 28))
+        self.pushButton_5.setObjectName("pushButton_5")
         self.label_11 = QtWidgets.QLabel(self.centralwidget)
         self.label_11.setGeometry(QtCore.QRect(800, 530, 111, 31))
         self.label_11.setObjectName("label_11")
@@ -155,6 +158,12 @@ class Ui_MainWindow(object):
         self.horizontalSlider_11.setTickInterval(1)
         self.horizontalSlider_11.setObjectName("horizontalSlider_11")
         self.verticalLayout.addWidget(self.horizontalSlider_11)
+        self.horizontalSlider_12 = QtWidgets.QSlider(self.layoutWidget)
+        self.horizontalSlider_12.setOrientation(QtCore.Qt.Horizontal)
+        self.horizontalSlider_12.setTickPosition(QtWidgets.QSlider.TicksAbove)
+        self.horizontalSlider_12.setTickInterval(1)
+        self.horizontalSlider_12.setObjectName("horizontalSlider_12")
+        self.verticalLayout.addWidget(self.horizontalSlider_12)
         self.layoutWidget1 = QtWidgets.QWidget(self.centralwidget)
         self.layoutWidget1.setGeometry(QtCore.QRect(320, 500, 151, 401))
         self.layoutWidget1.setObjectName("layoutWidget1")
@@ -194,6 +203,9 @@ class Ui_MainWindow(object):
         self.checkBox_11 = QtWidgets.QCheckBox(self.layoutWidget1)
         self.checkBox_11.setObjectName("checkBox_11")
         self.verticalLayout_2.addWidget(self.checkBox_11)
+        self.checkBox_12 = QtWidgets.QCheckBox(self.layoutWidget1)
+        self.checkBox_12.setObjectName("checkBox_12")
+        self.verticalLayout_2.addWidget(self.checkBox_12)
         self.splitter = QtWidgets.QSplitter(self.centralwidget)
         self.splitter.setGeometry(QtCore.QRect(210, 500, 111, 401))
         self.splitter.setOrientation(QtCore.Qt.Vertical)
@@ -236,6 +248,9 @@ class Ui_MainWindow(object):
         self.label_19 = QtWidgets.QLabel(self.layoutWidget2)
         self.label_19.setObjectName("label_19")
         self.gridLayout.addWidget(self.label_19, 10, 0, 1, 1)
+        self.label_32 = QtWidgets.QLabel(self.layoutWidget2)
+        self.label_32.setObjectName("label_32")
+        self.gridLayout.addWidget(self.label_32, 11, 0, 1, 1)
         self.layoutWidget3 = QtWidgets.QWidget(self.centralwidget)
         self.layoutWidget3.setGeometry(QtCore.QRect(680, 500, 61, 401))
         self.layoutWidget3.setObjectName("layoutWidget3")
@@ -275,6 +290,9 @@ class Ui_MainWindow(object):
         self.lineEdit_12 = QtWidgets.QLineEdit(self.layoutWidget3)
         self.lineEdit_12.setObjectName("lineEdit_12")
         self.verticalLayout_3.addWidget(self.lineEdit_12)
+        self.lineEdit_13 = QtWidgets.QLineEdit(self.layoutWidget3)
+        self.lineEdit_13.setObjectName("lineEdit_13")
+        self.verticalLayout_3.addWidget(self.lineEdit_13)
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -286,7 +304,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "ImgAugTool"))
         self.label_1.setText(_translate("MainWindow", "Display1"))
         self.pushButton_1.setText(_translate("MainWindow", "1.选定原始数据"))
         self.label_2.setText(_translate("MainWindow", "Display1"))
@@ -297,6 +315,7 @@ class Ui_MainWindow(object):
         self.label_6.setText(_translate("MainWindow", "增强后图像："))
         self.pushButton_3.setText(_translate("MainWindow", "选择完毕"))
         self.pushButton_4.setText(_translate("MainWindow", "3.开始数据增强"))
+        self.pushButton_5.setText(_translate("MainWindow", "4.图像预览"))
         self.label_11.setText(_translate("MainWindow", "增强图片数量："))
         self.checkBox_1.setText(_translate("MainWindow", "选中/取消"))
         self.checkBox_2.setText(_translate("MainWindow", "选中/取消"))
@@ -309,6 +328,7 @@ class Ui_MainWindow(object):
         self.checkBox_9.setText(_translate("MainWindow", "选中/取消"))
         self.checkBox_10.setText(_translate("MainWindow", "选中/取消"))
         self.checkBox_11.setText(_translate("MainWindow", "选中/取消"))
+        self.checkBox_12.setText(_translate("MainWindow", "选中/取消"))
         self.label_15.setText(_translate("MainWindow", "高斯模糊："))
         self.label_14.setText(_translate("MainWindow", "垂直翻转："))
         self.label_17.setText(_translate("MainWindow", "图像压缩："))
@@ -320,43 +340,8 @@ class Ui_MainWindow(object):
         self.label_5.setText(_translate("MainWindow", "像素增强/减弱："))
         self.label_20.setText(_translate("MainWindow", "图像平移_Y轴："))
         self.label_19.setText(_translate("MainWindow", "图像放缩："))
+        self.label_32.setText(_translate("MainWindow", "图像旋转："))
 
-    def retranslateUi(self, MainWindow):
-        _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.label_1.setText(_translate("MainWindow", "Display1"))
-        self.pushButton_1.setText(_translate("MainWindow", "1.选定原始数据"))
-        self.label_2.setText(_translate("MainWindow", "Display1"))
-        self.label.setText(_translate("MainWindow", "数据增强方式选择："))
-        self.pushButton_2.setText(_translate("MainWindow", "2.选定保存位置"))
-        self.pushButton.setText(_translate("MainWindow", "选择完毕"))
-        self.label_3.setText(_translate("MainWindow", "原始图像："))
-        self.label_6.setText(_translate("MainWindow", "增强后图像："))
-        self.pushButton_3.setText(_translate("MainWindow", "选择完毕"))
-        self.pushButton_4.setText(_translate("MainWindow", "3.开始数据增强"))
-        self.label_11.setText(_translate("MainWindow", "增强图片数量："))
-        self.checkBox_1.setText(_translate("MainWindow", "选中/取消"))
-        self.checkBox_2.setText(_translate("MainWindow", "选中/取消"))
-        self.checkBox_3.setText(_translate("MainWindow", "选中/取消"))
-        self.checkBox_4.setText(_translate("MainWindow", "选中/取消"))
-        self.checkBox_5.setText(_translate("MainWindow", "选中/取消"))
-        self.checkBox_6.setText(_translate("MainWindow", "选中/取消"))
-        self.checkBox_7.setText(_translate("MainWindow", "选中/取消"))
-        self.checkBox_8.setText(_translate("MainWindow", "选中/取消"))
-        self.checkBox_9.setText(_translate("MainWindow", "选中/取消"))
-        self.checkBox_10.setText(_translate("MainWindow", "选中/取消"))
-        self.checkBox_11.setText(_translate("MainWindow", "选中/取消"))
-        self.label_15.setText(_translate("MainWindow", "高斯模糊："))
-        self.label_14.setText(_translate("MainWindow", "垂直翻转："))
-        self.label_17.setText(_translate("MainWindow", "图像压缩："))
-        self.label_31.setText(_translate("MainWindow", "图像平移_X轴："))
-        self.label_4.setText(_translate("MainWindow", "颜色反转："))
-        self.label_12.setText(_translate("MainWindow", "丢弃像素："))
-        self.label_30.setText(_translate("MainWindow", "水平翻转："))
-        self.label_29.setText(_translate("MainWindow", "对比度增强:"))
-        self.label_5.setText(_translate("MainWindow", "像素增强/减弱："))
-        self.label_20.setText(_translate("MainWindow", "图像平移_Y轴："))
-        self.label_19.setText(_translate("MainWindow", "图像放缩："))
 
     def setElmentUi(self):
         self.horizontalSlider_1.valueChanged.connect(self.slot1)
@@ -370,6 +355,7 @@ class Ui_MainWindow(object):
         self.horizontalSlider_9.valueChanged.connect(self.slot9)
         self.horizontalSlider_10.valueChanged.connect(self.slot10)
         self.horizontalSlider_11.valueChanged.connect(self.slot11)
+        self.horizontalSlider_12.valueChanged.connect(self.slot12)
         self.pushButton_1.clicked.connect(self.task_1)
         self.pushButton_2.clicked.connect(self.task_2)
         path = self.origin_path + "//Images"
@@ -395,28 +381,29 @@ class Ui_MainWindow(object):
         self.horizontalSlider_10.setMaximum(10)
         self.horizontalSlider_10.setMinimum(-10)
         self.horizontalSlider_11.setMaximum(20)
-
+        self.horizontalSlider_12.setMaximum(18)
+        self.horizontalSlider_12.setMinimum(-18)
 
     def slot1(self):
-        self.lineEdit_2.setText(str(self.horizontalSlider_1.value()/10))
+        self.lineEdit_2.setText(str(self.horizontalSlider_1.value() / 10))
 
     def slot2(self):
-        self.lineEdit_3.setText(str(self.horizontalSlider_2.value()/10))
+        self.lineEdit_3.setText(str(self.horizontalSlider_2.value() / 10))
 
     def slot3(self):
         self.lineEdit_4.setText(str(self.horizontalSlider_3.value()))
 
     def slot4(self):
-        self.lineEdit_5.setText(str(self.horizontalSlider_4.value()/10))
+        self.lineEdit_5.setText(str(self.horizontalSlider_4.value() / 10))
 
     def slot5(self):
-        self.lineEdit_6.setText(str(self.horizontalSlider_5.value()/10))
+        self.lineEdit_6.setText(str(self.horizontalSlider_5.value() / 10))
 
     def slot6(self):
-        self.lineEdit_7.setText(str(self.horizontalSlider_6.value()/10))
+        self.lineEdit_7.setText(str(self.horizontalSlider_6.value() / 10))
 
     def slot7(self):
-        self.lineEdit_8.setText(str(self.horizontalSlider_7.value()/10))
+        self.lineEdit_8.setText(str(self.horizontalSlider_7.value() / 10))
 
     def slot8(self):
         self.lineEdit_9.setText(str(self.horizontalSlider_8.value()))
@@ -425,10 +412,13 @@ class Ui_MainWindow(object):
         self.lineEdit_10.setText(str(self.horizontalSlider_9.value()))
 
     def slot10(self):
-        self.lineEdit_11.setText(str(self.horizontalSlider_10.value()/10))
+        self.lineEdit_11.setText(str(self.horizontalSlider_10.value() / 10))
 
     def slot11(self):
-        self.lineEdit_12.setText(str(self.horizontalSlider_11.value()/10))
+        self.lineEdit_12.setText(str(self.horizontalSlider_11.value() / 10))
+
+    def slot12(self):
+        self.lineEdit_13.setText(str(self.horizontalSlider_12.value() * 10))
 
     def task_1(self):
         root = tk.Tk()
@@ -478,25 +468,65 @@ class Ui_MainWindow(object):
         tfList.append(self.checkBox_9.isChecked())
         tfList.append(self.checkBox_10.isChecked())
         tfList.append(self.checkBox_11.isChecked())
-        valueList.append(self.horizontalSlider_1.value()/10)
-        valueList.append(self.horizontalSlider_2.value()/10)
+        tfList.append(self.checkBox_12.isChecked())
+        valueList.append(self.horizontalSlider_1.value() / 10)
+        valueList.append(self.horizontalSlider_2.value() / 10)
         valueList.append(self.horizontalSlider_3.value())
-        valueList.append(self.horizontalSlider_4.value()/10)
-        valueList.append(self.horizontalSlider_5.value()/10)
-        valueList.append(self.horizontalSlider_6.value()/10)
-        valueList.append(self.horizontalSlider_7.value()/10)
+        valueList.append(self.horizontalSlider_4.value() / 10)
+        valueList.append(self.horizontalSlider_5.value() / 10)
+        valueList.append(self.horizontalSlider_6.value() / 10)
+        valueList.append(self.horizontalSlider_7.value() / 10)
         valueList.append(self.horizontalSlider_8.value())
         valueList.append(self.horizontalSlider_9.value())
-        valueList.append(self.horizontalSlider_10.value()/10)
-        valueList.append(self.horizontalSlider_11.value()/10)
-
-
-        method.imgaug(self.origin_path,self.save_path,tfList,valueList,int(self.lineEdit.text()))
+        valueList.append(self.horizontalSlider_10.value() / 10)
+        valueList.append(self.horizontalSlider_11.value() / 10)
+        valueList.append(self.horizontalSlider_12.value() * 10)
+        method.imgaug(self.origin_path, self.save_path, tfList, valueList, int(self.lineEdit.text()))
         path = self.save_path + "//Images"
         content_list = os.listdir(path)
+        self.comboBox_2.clear()
         for i in range(len(content_list)):
             self.comboBox_2.addItem(str(content_list[i]))
 
+    def press_it_4(self):
+        tfList = []
+        valueList = []
+        tfList.append(self.checkBox_1.isChecked())
+        tfList.append(self.checkBox_2.isChecked())
+        tfList.append(self.checkBox_3.isChecked())
+        tfList.append(self.checkBox_4.isChecked())
+        tfList.append(self.checkBox_5.isChecked())
+        tfList.append(self.checkBox_6.isChecked())
+        tfList.append(self.checkBox_7.isChecked())
+        tfList.append(self.checkBox_8.isChecked())
+        tfList.append(self.checkBox_9.isChecked())
+        tfList.append(self.checkBox_10.isChecked())
+        tfList.append(self.checkBox_11.isChecked())
+        tfList.append(self.checkBox_12.isChecked())
+        valueList.append(self.horizontalSlider_1.value() / 10)
+        valueList.append(self.horizontalSlider_2.value() / 10)
+        valueList.append(self.horizontalSlider_3.value())
+        valueList.append(self.horizontalSlider_4.value() / 10)
+        valueList.append(self.horizontalSlider_5.value() / 10)
+        valueList.append(self.horizontalSlider_6.value() / 10)
+        valueList.append(self.horizontalSlider_7.value() / 10)
+        valueList.append(self.horizontalSlider_8.value())
+        valueList.append(self.horizontalSlider_9.value())
+        valueList.append(self.horizontalSlider_10.value() / 10)
+        valueList.append(self.horizontalSlider_11.value() / 10)
+        valueList.append(self.horizontalSlider_12.value() * 10)
+        print(tfList)
+        print(valueList)
+        method.imgaug(self.origin_path, self.test_path, tfList, valueList, 1)
+        path = self.test_path + "//Images"
+        content_list = os.listdir(path)
+        self.comboBox_2.clear()
+        for i in range(len(content_list)):
+            self.comboBox_2.addItem(str(content_list[i]))
+        img_name = self.comboBox_2.currentText()
+        img_path = self.test_path + '//Images\\\\' + img_name
+        self.label_2.setScaledContents(True)
+        self.label_2.setPixmap(QPixmap(img_path))
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
