@@ -2,6 +2,7 @@
 import os
 import sys
 from tkinter import filedialog
+from tool.drawBox import dbox
 
 # Form implementation generated from reading ui file 'untitled.ui'
 #
@@ -384,6 +385,12 @@ class Ui_MainWindow(object):
         self.horizontalSlider_12.setMaximum(18)
         self.horizontalSlider_12.setMinimum(-18)
 
+        self.pushButton_1.hide()
+        self.pushButton_2.hide()
+        self.label_6.hide()
+        self.pushButton_3.hide()
+        self.comboBox_2.hide()
+
     def slot1(self):
         self.lineEdit_2.setText(str(self.horizontalSlider_1.value() / 10))
 
@@ -515,18 +522,18 @@ class Ui_MainWindow(object):
         valueList.append(self.horizontalSlider_10.value() / 10)
         valueList.append(self.horizontalSlider_11.value() / 10)
         valueList.append(self.horizontalSlider_12.value() * 10)
-        print(tfList)
-        print(valueList)
         method.imgaug(self.origin_path, self.test_path, tfList, valueList, 1)
         path = self.test_path + "//Images"
         content_list = os.listdir(path)
         self.comboBox_2.clear()
+        print(content_list[0])
+        dbox(path+"//"+str(content_list[0]),self.test_path+"//Annotations//"+str(content_list[0]).replace(".jpg",".xml"))
         for i in range(len(content_list)):
             self.comboBox_2.addItem(str(content_list[i]))
-        img_name = self.comboBox_2.currentText()
-        img_path = self.test_path + '//Images\\\\' + img_name
+        # img_name = self.comboBox_2.currentText()
+        # img_path = self.test_path + '//Images\\\\' + img_name
         self.label_2.setScaledContents(True)
-        self.label_2.setPixmap(QPixmap(img_path))
+        self.label_2.setPixmap(QPixmap("test.jpg"))
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

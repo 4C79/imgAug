@@ -23,7 +23,6 @@ def dbox(img_path,xml_path):
 
     # (500, 375, 3) -> h w c
     src = cv2.imread(img_path)
-    cv2.namedWindow('image', cv2.WINDOW_AUTOSIZE)
     src = np.array(src)
     # 画 b_box
     cv2.rectangle(src, tuple(ptLeftTop), tuple(ptRightBottom), point_color, thickness, lineType)
@@ -38,8 +37,6 @@ def dbox(img_path,xml_path):
     ptLeftTop[1] = ptLeftTop[1] + (t_size[1] / 2 + 4)
     # 绘字
     cv2.putText(src, class_name, tuple(ptLeftTop), cv2.FONT_HERSHEY_PLAIN, 1.0, (255, 0, 255), 1)
-    # 打印图片的shape
-    print(src.shape)
     cv2.imwrite("test.jpg",src)
 
 if __name__ == '__main__':
