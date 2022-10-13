@@ -358,6 +358,17 @@ class Ui_MainWindow(object):
         self.horizontalSlider_11.valueChanged.connect(self.slot11)
         self.horizontalSlider_12.valueChanged.connect(self.slot12)
         self.lineEdit_2.textChanged.connect(self.slott1)
+        self.lineEdit_3.textChanged.connect(self.slott2)
+        self.lineEdit_4.textChanged.connect(self.slott3)
+        self.lineEdit_5.textChanged.connect(self.slott4)
+        self.lineEdit_6.textChanged.connect(self.slott5)
+        self.lineEdit_7.textChanged.connect(self.slott6)
+        self.lineEdit_8.textChanged.connect(self.slott7)
+        self.lineEdit_9.textChanged.connect(self.slott8)
+        self.lineEdit_10.textChanged.connect(self.slott9)
+        self.lineEdit_11.textChanged.connect(self.slott10)
+        self.lineEdit_12.textChanged.connect(self.slott11)
+        self.lineEdit_13.textChanged.connect(self.slott12)
         self.pushButton_1.clicked.connect(self.task_1)
         self.pushButton_2.clicked.connect(self.task_2)
         path = self.origin_path + "//Images"
@@ -431,27 +442,27 @@ class Ui_MainWindow(object):
     def slott1(self):
         self.horizontalSlider_1.setValue(int(float(self.lineEdit_2.text())*10))
     def slott2(self):
-        self.horizontalSlider_2.setValue(int(float(self.lineEdit_2.text())*10))
+        self.horizontalSlider_2.setValue(int(float(self.lineEdit_3.text())*10))
     def slott3(self):
-        self.horizontalSlider_3.setValue(int(float(self.lineEdit_2.text())*10))
+        self.horizontalSlider_3.setValue(int(float(self.lineEdit_4.text())))
     def slott4(self):
-        self.horizontalSlider_4.setValue(int(float(self.lineEdit_2.text())*10))
+        self.horizontalSlider_4.setValue(int(float(self.lineEdit_5.text())*10))
     def slott5(self):
-        self.horizontalSlider_5.setValue(int(float(self.lineEdit_2.text())*10))
+        self.horizontalSlider_5.setValue(int(float(self.lineEdit_6.text())*10))
     def slott6(self):
-        self.horizontalSlider_6.setValue(int(float(self.lineEdit_2.text())*10))
+        self.horizontalSlider_6.setValue(int(float(self.lineEdit_7.text())*10))
     def slott7(self):
-        self.horizontalSlider_7.setValue(int(float(self.lineEdit_2.text())*10))
+        self.horizontalSlider_7.setValue(int(float(self.lineEdit_8.text())*10))
     def slott8(self):
-        self.horizontalSlider_8.setValue(int(float(self.lineEdit_2.text())*10))
+        self.horizontalSlider_8.setValue(int(float(self.lineEdit_9.text())))
     def slott9(self):
-        self.horizontalSlider_9.setValue(int(float(self.lineEdit_2.text())*10))
+        self.horizontalSlider_9.setValue(int(float(self.lineEdit_10.text())))
     def slott10(self):
-        self.horizontalSlider_10.setValue(int(float(self.lineEdit_2.text())*10))
+        self.horizontalSlider_10.setValue(int(float(self.lineEdit_11.text())*10))
     def slott11(self):
-        self.horizontalSlider_11.setValue(int(float(self.lineEdit_2.text())*10))
+        self.horizontalSlider_11.setValue(int(float(self.lineEdit_12.text())*10))
     def slott12(self):
-        self.horizontalSlider_12.setValue(int(float(self.lineEdit_2.text())*10))
+        self.horizontalSlider_12.setValue(int(float(self.lineEdit_13.text())/10))
 
     def task_1(self):
         root = tk.Tk()
