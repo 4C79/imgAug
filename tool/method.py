@@ -158,11 +158,11 @@ def imgaug(origin_path, save_path, tfList, valueList,AUGLOOP):
 
     # 变换图像中每个像素的像素值，参数表示增减多少（-20，20），per_channel表示是否所有通道均变化
     if c_increase == True:
-        seq.append(iaa.Sequential([iaa.Add(float(valueList[8]), per_channel=True)]))
+        seq.append(iaa.Sequential([iaa.Add(value=(valueList[8],-valueList[8]), per_channel=True)]))
 
     # 压缩图像，值代表程度 0-100
     if c_jpegCompression == True:
-        seq.append(iaa.Sequential([iaa.JpegCompression(float(valueList[2]))]))
+        seq.append(iaa.Sequential([iaa.JpegCompression(compression=(0,valueList[2]))]))
 
     # 对图像增加高斯模糊 , scale = 0.0 - 1
     if c_GaussianNoise == True:
@@ -170,11 +170,12 @@ def imgaug(origin_path, save_path, tfList, valueList,AUGLOOP):
 
     # 随机丢失像素，第一个参数表示丢失的数量，第二个表示在分辨率为size_percent下进行丢失
     if c_CoarseDropout == True:
-        seq.append(iaa.Sequential([iaa.CoarseDropout(float(valueList[5]), size_percent=0.5)]))
+        seq.append(iaa.Sequential([iaa.CoarseDropout((0,float(valueList[5])), size_percent=0.5)]))
 
     # 对比度增强，范围在 0.5 - 1.5 之间
     if c_ContrastNormalization == True:
-        seq.append(iaa.Sequential([iaa.ContrastNormalization((float(valueList[7])-0.2,float(valueList[7])+0.2))]))
+        print(valueList[7])
+        seq.append(iaa.Sequential([iaa.ContrastNormalization((-float(valueList[7]),float(valueList[7])))]))
 
     # 缩放，范围在 0.5 - 1.5 之间
     if c_Affine == True:

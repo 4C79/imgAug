@@ -2,6 +2,9 @@
 import os
 import sys
 from tkinter import filedialog
+
+from PyQt5.QtCore import QUrl
+
 from tool.drawBox import dbox
 
 # Form implementation generated from reading ui file 'untitled.ui'
@@ -14,7 +17,7 @@ from tool.drawBox import dbox
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QPixmap
-from PyQt5.QtWidgets import QApplication, QMainWindow, QSlider
+from PyQt5.QtWidgets import QApplication, QMainWindow, QSlider, QMenu, QAction, QFileDialog
 import tkinter as tk
 from tkinter import filedialog
 from tool import method
@@ -294,6 +297,18 @@ class Ui_MainWindow(object):
         self.lineEdit_13 = QtWidgets.QLineEdit(self.layoutWidget3)
         self.lineEdit_13.setObjectName("lineEdit_13")
         self.verticalLayout_3.addWidget(self.lineEdit_13)
+        self.menuBar = QtWidgets.QMenuBar(MainWindow)
+        self.menuBar.setGeometry(QtCore.QRect(0, 0, 1042, 26))
+        self.menuBar.setObjectName("menuBar")
+        self.menuHelp = QtWidgets.QMenu(self.menuBar)
+        self.menuHelp.setObjectName("menuHelp")
+        self.actionshouche = QtWidgets.QAction(MainWindow)
+        self.actionshouche.setObjectName("actionshouche")
+        self.menuHelp.addAction(self.actionshouche)
+        MainWindow.setMenuBar(self.menuBar)
+        self.menuBar.addAction(self.menuHelp.menuAction())
+        self.menuHelp.triggered[QAction].connect(self.task_3)
+
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -342,7 +357,8 @@ class Ui_MainWindow(object):
         self.label_20.setText(_translate("MainWindow", "图像平移_Y轴："))
         self.label_19.setText(_translate("MainWindow", "图像放缩："))
         self.label_32.setText(_translate("MainWindow", "图像旋转："))
-
+        self.menuHelp.setTitle(_translate("MainWindow", "help"))
+        self.actionshouche.setText(_translate("MainWindow", "操作手册"))
 
     def setElmentUi(self):
         self.horizontalSlider_1.valueChanged.connect(self.slot1)
@@ -399,9 +415,22 @@ class Ui_MainWindow(object):
 
         self.pushButton_1.hide()
         self.pushButton_2.hide()
-        self.label_6.hide()
-        self.pushButton_3.hide()
-        self.comboBox_2.hide()
+        self.lineEdit_2.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.lineEdit_3.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.lineEdit_4.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.lineEdit_5.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.lineEdit_6.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.lineEdit_7.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.lineEdit_8.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.lineEdit_9.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.lineEdit_10.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.lineEdit_11.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.lineEdit_12.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.lineEdit_13.setFocusPolicy(QtCore.Qt.NoFocus)
+        # self.label_6.hide()
+        # self.pushButton_3.hide()
+        # self.comboBox_2.hide()
+
 
     def slot1(self):
         self.lineEdit_2.setText(str(self.horizontalSlider_1.value() / 10))
@@ -485,6 +514,11 @@ class Ui_MainWindow(object):
         content_list = os.listdir(path)
         for i in range(len(content_list)):
             self.comboBox_2.addItem(str(content_list[i]))
+
+    def task_3(self):
+        import os
+        os.popen('CRNN.pdf')
+
 
     def press_it(self):
         img_name = self.comboBox.currentText()
