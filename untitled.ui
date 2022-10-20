@@ -484,38 +484,10 @@
     </property>
     <widget class="QWidget" name="layoutWidget">
      <layout class="QGridLayout" name="gridLayout">
-      <item row="0" column="0">
-       <widget class="QLabel" name="label_15">
-        <property name="text">
-         <string>高斯模糊：</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="label_14">
-        <property name="text">
-         <string>垂直翻转：</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="label_17">
-        <property name="text">
-         <string>图像压缩：</string>
-        </property>
-       </widget>
-      </item>
       <item row="3" column="0">
        <widget class="QLabel" name="label_31">
         <property name="text">
          <string>图像平移_X轴：</string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="0">
-       <widget class="QLabel" name="label_4">
-        <property name="text">
-         <string>颜色反转：</string>
         </property>
        </widget>
       </item>
@@ -526,6 +498,13 @@
         </property>
        </widget>
       </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_17">
+        <property name="text">
+         <string>图像压缩：</string>
+        </property>
+       </widget>
+      </item>
       <item row="6" column="0">
        <widget class="QLabel" name="label_30">
         <property name="text">
@@ -533,10 +512,17 @@
         </property>
        </widget>
       </item>
-      <item row="7" column="0">
-       <widget class="QLabel" name="label_29">
+      <item row="10" column="0">
+       <widget class="QLabel" name="label_19">
         <property name="text">
-         <string>对比度增强:</string>
+         <string>图像放缩：</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_15">
+        <property name="text">
+         <string>高斯模糊：</string>
         </property>
        </widget>
       </item>
@@ -547,6 +533,13 @@
         </property>
        </widget>
       </item>
+      <item row="7" column="0">
+       <widget class="QLabel" name="label_29">
+        <property name="text">
+         <string>对比度增强:</string>
+        </property>
+       </widget>
+      </item>
       <item row="9" column="0">
        <widget class="QLabel" name="label_20">
         <property name="text">
@@ -554,10 +547,17 @@
         </property>
        </widget>
       </item>
-      <item row="10" column="0">
-       <widget class="QLabel" name="label_19">
+      <item row="4" column="0">
+       <widget class="QLabel" name="label_4">
         <property name="text">
-         <string>图像放缩：</string>
+         <string>颜色反转：</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_14">
+        <property name="text">
+         <string>垂直翻转：</string>
         </property>
        </widget>
       </item>
@@ -608,6 +608,16 @@
       <widget class="QLineEdit" name="lineEdit_12"/>
      </item>
     </layout>
+   </widget>
+   <widget class="QTextBrowser" name="textBrowser">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>740</y>
+      <width>81</width>
+      <height>111</height>
+     </rect>
+    </property>
    </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>

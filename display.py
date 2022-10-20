@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import sys
+import time
 from tkinter import filedialog
 
 from PyQt5.QtCore import QUrl
@@ -24,12 +25,15 @@ from tool import method
 
 
 class Ui_MainWindow(object):
+    # 全局变量
     origin_path = "data"
     save_path = "AUG"
     test_path = "test"
+
+    # 组件初始化
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1042, 931)
+        MainWindow.resize(1600, 900)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.label_1 = QtWidgets.QLabel(self.centralwidget)
@@ -47,7 +51,7 @@ class Ui_MainWindow(object):
         self.label_2.setFrameShape(QtWidgets.QFrame.Box)
         self.label_2.setObjectName("label_2")
         self.label = QtWidgets.QLabel(self.centralwidget)
-        self.label.setGeometry(QtCore.QRect(30, 660, 131, 41))
+        self.label.setGeometry(QtCore.QRect(1250, 20, 131, 41))
         self.label.setObjectName("label")
         self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_2.setGeometry(QtCore.QRect(540, 10, 481, 50))
@@ -71,19 +75,22 @@ class Ui_MainWindow(object):
         self.comboBox_2.setGeometry(QtCore.QRect(650, 70, 261, 31))
         self.comboBox_2.setObjectName("comboBox_2")
         self.pushButton_4 = QtWidgets.QPushButton(self.centralwidget, clicked=lambda: self.press_it_3())
-        self.pushButton_4.setGeometry(QtCore.QRect(770, 630, 251, 221))
+        self.pushButton_4.setGeometry(QtCore.QRect(1300, 600, 250, 250))
         self.pushButton_4.setObjectName("pushButton_4")
         self.pushButton_5 = QtWidgets.QPushButton(self.centralwidget, clicked=lambda: self.press_it_4())
-        self.pushButton_5.setGeometry(QtCore.QRect(850, 590, 93, 28))
+        self.pushButton_5.setGeometry(QtCore.QRect(1050, 600, 250, 250))
         self.pushButton_5.setObjectName("pushButton_5")
         self.label_11 = QtWidgets.QLabel(self.centralwidget)
-        self.label_11.setGeometry(QtCore.QRect(800, 530, 111, 31))
+        self.label_11.setGeometry(QtCore.QRect(1350, 550, 111, 31))
         self.label_11.setObjectName("label_11")
+        self.label_13 = QtWidgets.QLabel(self.centralwidget)
+        self.label_13.setGeometry(QtCore.QRect(12, 482, 111, 31))
+        self.label_13.setObjectName("label_13")
         self.lineEdit = QtWidgets.QLineEdit(self.centralwidget)
-        self.lineEdit.setGeometry(QtCore.QRect(910, 530, 71, 31))
+        self.lineEdit.setGeometry(QtCore.QRect(1450, 550, 71, 31))
         self.lineEdit.setObjectName("lineEdit")
         self.layoutWidget = QtWidgets.QWidget(self.centralwidget)
-        self.layoutWidget.setGeometry(QtCore.QRect(470, 500, 211, 401))
+        self.layoutWidget.setGeometry(QtCore.QRect(1260, 80, 211, 401))
         self.layoutWidget.setObjectName("layoutWidget")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.layoutWidget)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
@@ -169,7 +176,7 @@ class Ui_MainWindow(object):
         self.horizontalSlider_12.setObjectName("horizontalSlider_12")
         self.verticalLayout.addWidget(self.horizontalSlider_12)
         self.layoutWidget1 = QtWidgets.QWidget(self.centralwidget)
-        self.layoutWidget1.setGeometry(QtCore.QRect(320, 500, 151, 401))
+        self.layoutWidget1.setGeometry(QtCore.QRect(1150, 80, 151, 401))
         self.layoutWidget1.setObjectName("layoutWidget1")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.layoutWidget1)
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
@@ -211,7 +218,7 @@ class Ui_MainWindow(object):
         self.checkBox_12.setObjectName("checkBox_12")
         self.verticalLayout_2.addWidget(self.checkBox_12)
         self.splitter = QtWidgets.QSplitter(self.centralwidget)
-        self.splitter.setGeometry(QtCore.QRect(210, 500, 111, 401))
+        self.splitter.setGeometry(QtCore.QRect(1040, 80, 111, 401))
         self.splitter.setOrientation(QtCore.Qt.Vertical)
         self.splitter.setObjectName("splitter")
         self.layoutWidget2 = QtWidgets.QWidget(self.splitter)
@@ -256,7 +263,7 @@ class Ui_MainWindow(object):
         self.label_32.setObjectName("label_32")
         self.gridLayout.addWidget(self.label_32, 11, 0, 1, 1)
         self.layoutWidget3 = QtWidgets.QWidget(self.centralwidget)
-        self.layoutWidget3.setGeometry(QtCore.QRect(680, 500, 61, 401))
+        self.layoutWidget3.setGeometry(QtCore.QRect(1480, 80, 61, 401))
         self.layoutWidget3.setObjectName("layoutWidget3")
         self.verticalLayout_3 = QtWidgets.QVBoxLayout(self.layoutWidget3)
         self.verticalLayout_3.setContentsMargins(0, 0, 0, 0)
@@ -308,6 +315,9 @@ class Ui_MainWindow(object):
         MainWindow.setMenuBar(self.menuBar)
         self.menuBar.addAction(self.menuHelp.menuAction())
         self.menuHelp.triggered[QAction].connect(self.task_3)
+        self.textBrowser = QtWidgets.QTextBrowser(self.centralwidget)
+        self.textBrowser.setGeometry(QtCore.QRect(10, 520, 1017, 329))
+        self.textBrowser.setObjectName("textBrowser")
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
@@ -318,21 +328,23 @@ class Ui_MainWindow(object):
         self.setElmentUi()
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
+    # 组件命名
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "ImgAugTool"))
         self.label_1.setText(_translate("MainWindow", "Display1"))
-        self.pushButton_1.setText(_translate("MainWindow", "1.选定原始数据"))
+        self.pushButton_1.setText(_translate("MainWindow", "选定原始数据"))
         self.label_2.setText(_translate("MainWindow", "Display1"))
-        self.label.setText(_translate("MainWindow", "数据增强方式选择："))
-        self.pushButton_2.setText(_translate("MainWindow", "2.选定保存位置"))
+        self.label.setText(_translate("MainWindow", "数据增强方式选择"))
+        self.pushButton_2.setText(_translate("MainWindow", "选定保存位置"))
         self.pushButton.setText(_translate("MainWindow", "选择完毕"))
         self.label_3.setText(_translate("MainWindow", "原始图像："))
         self.label_6.setText(_translate("MainWindow", "增强后图像："))
         self.pushButton_3.setText(_translate("MainWindow", "选择完毕"))
-        self.pushButton_4.setText(_translate("MainWindow", "3.开始数据增强"))
-        self.pushButton_5.setText(_translate("MainWindow", "4.图像预览"))
+        self.pushButton_4.setText(_translate("MainWindow", "开始数据增强"))
+        self.pushButton_5.setText(_translate("MainWindow", "图像预览"))
         self.label_11.setText(_translate("MainWindow", "增强图片数量："))
+        self.label_13.setText(_translate("MainWindow", "日志信息："))
         self.checkBox_1.setText(_translate("MainWindow", "选中/取消"))
         self.checkBox_2.setText(_translate("MainWindow", "选中/取消"))
         self.checkBox_3.setText(_translate("MainWindow", "选中/取消"))
@@ -360,6 +372,7 @@ class Ui_MainWindow(object):
         self.menuHelp.setTitle(_translate("MainWindow", "help"))
         self.actionshouche.setText(_translate("MainWindow", "操作手册"))
 
+    # 数据链接
     def setElmentUi(self):
         self.horizontalSlider_1.valueChanged.connect(self.slot1)
         self.horizontalSlider_2.valueChanged.connect(self.slot2)
@@ -427,10 +440,10 @@ class Ui_MainWindow(object):
         self.lineEdit_11.setFocusPolicy(QtCore.Qt.NoFocus)
         self.lineEdit_12.setFocusPolicy(QtCore.Qt.NoFocus)
         self.lineEdit_13.setFocusPolicy(QtCore.Qt.NoFocus)
-        # self.label_6.hide()
-        # self.pushButton_3.hide()
-        # self.comboBox_2.hide()
 
+        tmp_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
+        self.textBrowser.append(tmp_time+" 软件运行成功")
+        self.textBrowser.append(tmp_time+" 数据文件来源于: "+os.getcwd()+self.origin_path+" 增强文件保存于: "+os.getcwd()+self.save_path)
 
     def slot1(self):
         self.lineEdit_2.setText(str(self.horizontalSlider_1.value() / 10))
@@ -469,29 +482,40 @@ class Ui_MainWindow(object):
         self.lineEdit_13.setText(str(self.horizontalSlider_12.value() * 10))
 
     def slott1(self):
-        self.horizontalSlider_1.setValue(int(float(self.lineEdit_2.text())*10))
+        self.horizontalSlider_1.setValue(int(float(self.lineEdit_2.text()) * 10))
+
     def slott2(self):
-        self.horizontalSlider_2.setValue(int(float(self.lineEdit_3.text())*10))
+        self.horizontalSlider_2.setValue(int(float(self.lineEdit_3.text()) * 10))
+
     def slott3(self):
         self.horizontalSlider_3.setValue(int(float(self.lineEdit_4.text())))
+
     def slott4(self):
-        self.horizontalSlider_4.setValue(int(float(self.lineEdit_5.text())*10))
+        self.horizontalSlider_4.setValue(int(float(self.lineEdit_5.text()) * 10))
+
     def slott5(self):
-        self.horizontalSlider_5.setValue(int(float(self.lineEdit_6.text())*10))
+        self.horizontalSlider_5.setValue(int(float(self.lineEdit_6.text()) * 10))
+
     def slott6(self):
-        self.horizontalSlider_6.setValue(int(float(self.lineEdit_7.text())*10))
+        self.horizontalSlider_6.setValue(int(float(self.lineEdit_7.text()) * 10))
+
     def slott7(self):
-        self.horizontalSlider_7.setValue(int(float(self.lineEdit_8.text())*10))
+        self.horizontalSlider_7.setValue(int(float(self.lineEdit_8.text()) * 10))
+
     def slott8(self):
         self.horizontalSlider_8.setValue(int(float(self.lineEdit_9.text())))
+
     def slott9(self):
         self.horizontalSlider_9.setValue(int(float(self.lineEdit_10.text())))
+
     def slott10(self):
-        self.horizontalSlider_10.setValue(int(float(self.lineEdit_11.text())*10))
+        self.horizontalSlider_10.setValue(int(float(self.lineEdit_11.text()) * 10))
+
     def slott11(self):
-        self.horizontalSlider_11.setValue(int(float(self.lineEdit_12.text())*10))
+        self.horizontalSlider_11.setValue(int(float(self.lineEdit_12.text()) * 10))
+
     def slott12(self):
-        self.horizontalSlider_12.setValue(int(float(self.lineEdit_13.text())/10))
+        self.horizontalSlider_12.setValue(int(float(self.lineEdit_13.text()) / 10))
 
     def task_1(self):
         root = tk.Tk()
@@ -517,14 +541,15 @@ class Ui_MainWindow(object):
 
     def task_3(self):
         import os
-        os.popen('CRNN.pdf')
-
+        os.popen('readme.pdf')
 
     def press_it(self):
         img_name = self.comboBox.currentText()
         img_path = self.origin_path + '//Images\\\\' + img_name
         self.label_1.setScaledContents(True)
         self.label_1.setPixmap(QPixmap(img_path))
+        tmp_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
+        self.textBrowser.append(tmp_time + " 当前源图片为: "+os.getcwd()+"/"+img_path)
 
     def press_it_2(self):
         img_name = self.comboBox_2.currentText()
@@ -595,16 +620,13 @@ class Ui_MainWindow(object):
         valueList.append(self.horizontalSlider_12.value() * 10)
         method.imgaug(self.origin_path, self.test_path, tfList, valueList, 1)
         path = self.test_path + "//Images"
-        content_list = os.listdir(path)
         self.comboBox_2.clear()
-        print(content_list[0])
-        dbox(path+"//"+str(content_list[0]),self.test_path+"//Annotations//"+str(content_list[0]).replace(".jpg",".xml"))
-        for i in range(len(content_list)):
-            self.comboBox_2.addItem(str(content_list[i]))
-        # img_name = self.comboBox_2.currentText()
-        # img_path = self.test_path + '//Images\\\\' + img_name
+        name = self.comboBox.currentText()
+        dbox(path + "//" + str(name).replace(".jpg", "_0.jpg"),
+             self.test_path + "//Annotations//" + str(name).replace(".jpg", "_0.xml"))
         self.label_2.setScaledContents(True)
         self.label_2.setPixmap(QPixmap("test.jpg"))
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
