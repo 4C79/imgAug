@@ -176,7 +176,7 @@ class Ui_MainWindow(object):
         self.horizontalSlider_12.setObjectName("horizontalSlider_12")
         self.verticalLayout.addWidget(self.horizontalSlider_12)
         self.layoutWidget1 = QtWidgets.QWidget(self.centralwidget)
-        self.layoutWidget1.setGeometry(QtCore.QRect(1150, 80, 151, 401))
+        self.layoutWidget1.setGeometry(QtCore.QRect(1150, 80, 100, 401))
         self.layoutWidget1.setObjectName("layoutWidget1")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.layoutWidget1)
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
@@ -318,6 +318,7 @@ class Ui_MainWindow(object):
         self.textBrowser = QtWidgets.QTextBrowser(self.centralwidget)
         self.textBrowser.setGeometry(QtCore.QRect(10, 520, 1017, 329))
         self.textBrowser.setObjectName("textBrowser")
+        self.horizontalSlider_4.setValue(0)
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
@@ -333,10 +334,10 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "ImgAugTool"))
         self.label_1.setText(_translate("MainWindow", "Display1"))
-        self.pushButton_1.setText(_translate("MainWindow", "选定原始数据"))
+        self.pushButton_1.setText(_translate("MainWindow", "选定原始数据(已初始化)"))
         self.label_2.setText(_translate("MainWindow", "Display1"))
         self.label.setText(_translate("MainWindow", "数据增强方式选择"))
-        self.pushButton_2.setText(_translate("MainWindow", "选定保存位置"))
+        self.pushButton_2.setText(_translate("MainWindow", "选定保存位置(已初始化)"))
         self.pushButton.setText(_translate("MainWindow", "选择完毕"))
         self.label_3.setText(_translate("MainWindow", "原始图像："))
         self.label_6.setText(_translate("MainWindow", "增强后图像："))
@@ -426,8 +427,8 @@ class Ui_MainWindow(object):
         self.horizontalSlider_12.setMaximum(18)
         self.horizontalSlider_12.setMinimum(-18)
 
-        self.pushButton_1.hide()
-        self.pushButton_2.hide()
+        # self.pushButton_1.hide()
+        # self.pushButton_2.hide()
         self.lineEdit_2.setFocusPolicy(QtCore.Qt.NoFocus)
         self.lineEdit_3.setFocusPolicy(QtCore.Qt.NoFocus)
         self.lineEdit_4.setFocusPolicy(QtCore.Qt.NoFocus)
@@ -442,8 +443,9 @@ class Ui_MainWindow(object):
         self.lineEdit_13.setFocusPolicy(QtCore.Qt.NoFocus)
 
         tmp_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
-        self.textBrowser.append(tmp_time+" 软件运行成功")
-        self.textBrowser.append(tmp_time+" 数据文件来源于: "+os.getcwd()+self.origin_path+" 增强文件保存于: "+os.getcwd()+self.save_path)
+        self.textBrowser.append(tmp_time + " 软件运行成功")
+        self.textBrowser.append(
+            tmp_time + " 数据文件来源于: " + os.getcwd() + self.origin_path + " 增强文件保存于: " + os.getcwd() + self.save_path)
 
     def slot1(self):
         self.lineEdit_2.setText(str(self.horizontalSlider_1.value() / 10))
@@ -520,10 +522,17 @@ class Ui_MainWindow(object):
     def task_1(self):
         root = tk.Tk()
         root.withdraw()
+        tmp_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
         # 获取文件夹路径
-        self.origin_path = filedialog.askdirectory()  # 获得选择好的文件夹
-        print("当前路径为：" + self.origin_path)
+        file_path = filedialog.askdirectory()
+
+        if file_path == "":
+            self.textBrowser.append(tmp_time + " 未选择文件夹")
+        else:
+            self.origin_path = file_path  # 获得选择好的文件夹
+            self.textBrowser.append(tmp_time + " 未正确选择文件夹")
         path = self.origin_path + "//Images"
+        self.comboBox.clear()
         content_list = os.listdir(path)
         for i in range(len(content_list)):
             self.comboBox.addItem(str(content_list[i]))
@@ -531,10 +540,18 @@ class Ui_MainWindow(object):
     def task_2(self):
         root = tk.Tk()
         root.withdraw()
+        tmp_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
         # 获取文件夹路径
-        self.save_path = filedialog.askdirectory()  # 获得选择好的文件夹
-        print("当前路径为：" + self.save_path)
+        file_path = filedialog.askdirectory()
+
+        if file_path == "":
+            self.textBrowser.append(tmp_time + " 未选择文件夹")
+        else:
+            self.save_path = file_path  # 获得选择好的文件夹
+            self.textBrowser.append(tmp_time + " 未正确选择文件夹")
+
         path = self.save_path + "//Images"
+        self.comboBox_2.clear()
         content_list = os.listdir(path)
         for i in range(len(content_list)):
             self.comboBox_2.addItem(str(content_list[i]))
@@ -549,13 +566,15 @@ class Ui_MainWindow(object):
         self.label_1.setScaledContents(True)
         self.label_1.setPixmap(QPixmap(img_path))
         tmp_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
-        self.textBrowser.append(tmp_time + " 当前源图片为: "+os.getcwd()+"/"+img_path)
+        self.textBrowser.append(tmp_time + " 当前源图片为: " + os.getcwd() + "/" + img_path)
 
     def press_it_2(self):
         img_name = self.comboBox_2.currentText()
         img_path = self.save_path + '//Images\\\\' + img_name
         self.label_2.setScaledContents(True)
         self.label_2.setPixmap(QPixmap(img_path))
+        tmp_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
+        self.textBrowser.append(tmp_time + " 当前显示的增强图片为: " + os.getcwd() + "/" + img_path)
 
     def press_it_3(self):
         tfList = []
@@ -584,12 +603,13 @@ class Ui_MainWindow(object):
         valueList.append(self.horizontalSlider_10.value() / 10)
         valueList.append(self.horizontalSlider_11.value() / 10)
         valueList.append(self.horizontalSlider_12.value() * 10)
-        method.imgaug(self.origin_path, self.save_path, tfList, valueList, int(self.lineEdit.text()))
+        msg_list = method.imgaug(self.origin_path, self.save_path, tfList, valueList, int(self.lineEdit.text()))
         path = self.save_path + "//Images"
         content_list = os.listdir(path)
         self.comboBox_2.clear()
         for i in range(len(content_list)):
             self.comboBox_2.addItem(str(content_list[i]))
+        self.textBrowser.append(msg_list)
 
     def press_it_4(self):
         tfList = []
@@ -618,7 +638,7 @@ class Ui_MainWindow(object):
         valueList.append(self.horizontalSlider_10.value() / 10)
         valueList.append(self.horizontalSlider_11.value() / 10)
         valueList.append(self.horizontalSlider_12.value() * 10)
-        method.imgaug(self.origin_path, self.test_path, tfList, valueList, 1)
+        msg_list = method.imgaug(self.origin_path, self.test_path, tfList, valueList, 1)
         path = self.test_path + "//Images"
         self.comboBox_2.clear()
         name = self.comboBox.currentText()
@@ -626,6 +646,7 @@ class Ui_MainWindow(object):
              self.test_path + "//Annotations//" + str(name).replace(".jpg", "_0.xml"))
         self.label_2.setScaledContents(True)
         self.label_2.setPixmap(QPixmap("test.jpg"))
+        self.textBrowser.append(msg_list)
 
 
 if __name__ == '__main__':

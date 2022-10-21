@@ -1,3 +1,4 @@
+import time
 import xml.etree.ElementTree as ET
 import os
 import imgaug as ia
@@ -101,6 +102,8 @@ def imgaug(origin_path, save_path, tfList, valueList,AUGLOOP):
     AUG_XML_DIR = save_path + "//Annotations"
     boxes_img_aug_list = []
     new_bndbox_list = []
+    tmp_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
+    msg_list = str(tmp_time) + " 此次图像增强选择的方式有: "
 
     # 翻转控制
     c_contrast_horizon = tfList[6]
@@ -148,51 +151,58 @@ def imgaug(origin_path, save_path, tfList, valueList,AUGLOOP):
     # 将图像镜像翻转（水平）,参数表示翻转图片的概率 0-1
     if c_contrast_horizon == True:
         seq.append(iaa.Sequential([iaa.Fliplr(float(valueList[6]))]))
+        msg_list += str(float(valueList[6])) + "的概率进行图像镜像（水平）翻转,"
     # 将图像镜像翻转（垂直）,参数表示翻转图片的概率 0-1
     if c_contrast_vertical == True:
         seq.append(iaa.Sequential([iaa.Flipud(float(valueList[1]))]))
-
+        msg_list += str(float(valueList[1])) + "的概率进行图像镜像（垂直）翻转,"
     # 将图像像素反转，即将像素变为 255-x ，参数表示图像转换的概率 0-1
     if c_invert == True:
         seq.append(iaa.Sequential([iaa.Invert(float(valueList[4]))]))
-
+        msg_list += str(float(valueList[4])) + "的概率进行像素反转,"
     # 变换图像中每个像素的像素值，参数表示增减多少（-20，20），per_channel表示是否所有通道均变化
     if c_increase == True:
         seq.append(iaa.Sequential([iaa.Add(value=(valueList[8],-valueList[8]), per_channel=True)]))
-
+        msg_list += "像素在（-" + str(abs(valueList[8])) + "," + str(abs(valueList[8])) + ")的范围内随机增减,"
     # 压缩图像，值代表程度 0-100
     if c_jpegCompression == True:
         seq.append(iaa.Sequential([iaa.JpegCompression(compression=(0,valueList[2]))]))
-
+        msg_list += "在（0" + "," + str(abs(valueList[2])) + "%)的范围内随机进行压缩,"
     # 对图像增加高斯模糊 , scale = 0.0 - 1
     if c_GaussianNoise == True:
         seq.append(iaa.Sequential([iaa.AdditiveGaussianNoise(scale=float(valueList[0]) * 255)]))
-
+        msg_list += "以" + str(float(valueList[0])) + "的程度进行高斯图像模糊,"
     # 随机丢失像素，第一个参数表示丢失的数量，第二个表示在分辨率为size_percent下进行丢失
     if c_CoarseDropout == True:
         seq.append(iaa.Sequential([iaa.CoarseDropout((0,float(valueList[5])), size_percent=0.5)]))
-
+        msg_list += "在（0" + "," + str(float(valueList[5])) + ")的范围内随机丢失图像,"
     # 对比度增强，范围在 0.5 - 1.5 之间
     if c_ContrastNormalization == True:
         print(valueList[7])
         seq.append(iaa.Sequential([iaa.ContrastNormalization((-float(valueList[7]),float(valueList[7])))]))
-
+        msg_list += "像素在（-" + str(abs(valueList[7])) + "," + str(abs(valueList[7])) + ")的范围内随机增强对比度,"
     # 缩放，范围在 0.5 - 1.5 之间
     if c_Affine == True:
         seq.append(iaa.Sequential([iaa.Affine(scale=(float(valueList[10])-0.2, float(valueList[10])+0.2))]))
-
-    # 平移 X 轴 ，范围在 -1 - 1 之间
+        msg_list += "在" + str(float(valueList[10])-0.2) + "," + str(valueList[10]+0.2) + ")的范围内随机缩放图像,"
+    # 平移 X 轴
     if c_translate_x == True:
         seq.append(iaa.Sequential([iaa.Affine(translate_percent={"x": (float(valueList[3]))})]))
-
-    # 平移 Y 轴 ，范围在 -1 - 1 之间
+        if float(valueList[3]) > 0:
+            msg_list += "向右移动图像" + str(abs(valueList[3])*100) + "%,"
+        else:
+            msg_list += "向左移动图像" + str(abs(valueList[3]) * 100) + "%,"
+    # 平移 Y 轴
     if c_translate_y == True:
         seq.append(iaa.Sequential([iaa.Affine(translate_percent={"y": (float(valueList[9]))})]))
-
+        if float(valueList[9]) > 0:
+            msg_list += "向下移动图像" + str(abs(valueList[9]) * 100) + "%,"
+        else:
+            msg_list += "向上移动图像" + str(abs(valueList[9]) * 100) + "%,"
     # 旋转图像，范围在 -180 - 180 之间
     if c_rotation == True:
         seq.append(iaa.Sequential([iaa.Affine(rotate=float(valueList[11]))]))
-
+        msg_list += "顺时针旋转图像" + str(float(valueList[11])) + "°,"
 
 
     for name in tqdm(os.listdir(XML_DIR), desc='Processing'):
@@ -250,6 +260,9 @@ def imgaug(origin_path, save_path, tfList, valueList,AUGLOOP):
                                        str(name[:-4]) + '_' + str(epoch))
             # print(str(str(name[:-4]) + '_' + str(epoch)) + '.jpg')
             new_bndbox_list = []
+
+    msg_list += "\n\t此次运行共增强" + str(AUGLOOP) + "张图像."
+    return msg_list
 
 
 if __name__ == "__main__":
