@@ -515,7 +515,7 @@ class Ui_MainWindow(object):
         root = tk.Tk()
         root.withdraw()
         tmp_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
-        #  获取文件夹路径
+        # 获取文件夹路径
         file_path = filedialog.askdirectory()
         self.note = open("log.txt", mode="a")
 
