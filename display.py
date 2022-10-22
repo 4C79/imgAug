@@ -300,9 +300,13 @@ class Ui_MainWindow(object):
         self.actionshouche = QtWidgets.QAction(MainWindow)
         self.actionshouche.setObjectName("actionshouche")
         self.menuHelp.addAction(self.actionshouche)
+        self.actionrizhi = QtWidgets.QAction(MainWindow)
+        self.actionrizhi.setObjectName("actionrizhi")
+        self.menuHelp.addAction(self.actionrizhi)
         MainWindow.setMenuBar(self.menuBar)
         self.menuBar.addAction(self.menuHelp.menuAction())
-        self.menuHelp.triggered[QAction].connect(self.task_3)
+        self.actionshouche.triggered.connect(self.task_3)
+        self.actionrizhi.triggered.connect(self.task_4)
         self.textBrowser = QtWidgets.QTextBrowser(self.centralwidget)
         self.textBrowser.setGeometry(QtCore.QRect(10, 520, 1017, 329))
         self.textBrowser.setObjectName("textBrowser")
@@ -358,8 +362,9 @@ class Ui_MainWindow(object):
         self.label_20.setText(_translate("MainWindow", "图像平移_Y轴："))
         self.label_19.setText(_translate("MainWindow", "图像放缩："))
         self.label_32.setText(_translate("MainWindow", "图像旋转："))
-        self.menuHelp.setTitle(_translate("MainWindow", "help"))
+        self.menuHelp.setTitle(_translate("MainWindow", "帮助"))
         self.actionshouche.setText(_translate("MainWindow", "操作手册"))
+        self.actionrizhi.setText(_translate("MainWindow", "日志"))
 
     # 数据链接
     def setElmentUi(self):
@@ -515,7 +520,7 @@ class Ui_MainWindow(object):
         root = tk.Tk()
         root.withdraw()
         tmp_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
-        # 获取文件夹路径
+        #  获取文件夹路径
         file_path = filedialog.askdirectory()
         self.note = open("log.txt", mode="a")
 
@@ -559,8 +564,10 @@ class Ui_MainWindow(object):
             self.comboBox_2.addItem(str(content_list[i]))
 
     def task_3(self):
-        import os
         os.popen('readme.pdf')
+
+    def task_4(self):
+        os.popen('log.txt')
 
     def press_it(self):
         self.note = open("log.txt", mode="a")

@@ -279,7 +279,10 @@ class Ui_MainWindow(object):
         MainWindow.setMenuBar(self.menuBar)
         self.actionshouche = QtWidgets.QAction(MainWindow)
         self.actionshouche.setObjectName("actionshouche")
+        self.actionrizhi = QtWidgets.QAction(MainWindow)
+        self.actionrizhi.setObjectName("actionrizhi")
         self.menuHelp.addAction(self.actionshouche)
+        self.menuHelp.addAction(self.actionrizhi)
         self.menuBar.addAction(self.menuHelp.menuAction())
 
         self.retranslateUi(MainWindow)
@@ -323,3 +326,4 @@ class Ui_MainWindow(object):
         self.label_14.setText(_translate("MainWindow", "垂直翻转："))
         self.menuHelp.setTitle(_translate("MainWindow", "Help"))
         self.actionshouche.setText(_translate("MainWindow", "shouche"))
+        self.actionrizhi.setText(_translate("MainWindow", "rizhi"))

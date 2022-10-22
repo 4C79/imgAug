@@ -1,0 +1,30 @@
+2022-10-22 12:00:33 软件运行成功
+2022-10-22 12:00:33 数据文件来源于: G:\data_process\imgAug\imgAugdata 增强文件保存于: G:\data_process\imgAug\imgAugAUG
+2022-10-22 12:00:49 当前源图片为: G:\data_process\imgAug\imgAug/data//Images\\airplane.jpg
+2022-10-22 12:00:51 当前显示的增强图片为: G:\data_process\imgAug\imgAug/AUG//Images\\airplane_1.jpg
+2022-10-22 12:00:57 此次图像增强选择的方式有: 以0.2的程度进行高斯图像模糊,
+	此次运行共增强1张图像.
+2022-10-22 17:09:09 软件运行成功
+2022-10-22 17:09:09 数据文件来源于: G:\data_process\imgAug\imgAugdata 增强文件保存于: G:\data_process\imgAug\imgAugAUG
+2022-10-22 17:10:36 软件运行成功
+2022-10-22 17:10:36 数据文件来源于: G:\data_process\imgAug\imgAugdata 增强文件保存于: G:\data_process\imgAug\imgAugAUG
+2022-10-22 17:21:23 软件运行成功
+2022-10-22 17:21:23 数据文件来源于: G:\data_process\imgAug\imgAugdata 增强文件保存于: G:\data_process\imgAug\imgAugAUG
+2022-10-22 17:21:56 软件运行成功
+2022-10-22 17:21:56 数据文件来源于: G:\data_process\imgAug\imgAugdata 增强文件保存于: G:\data_process\imgAug\imgAugAUG
+2022-10-22 17:22:56 软件运行成功
+2022-10-22 17:22:56 数据文件来源于: G:\data_process\imgAug\imgAugdata 增强文件保存于: G:\data_process\imgAug\imgAugAUG
+2022-10-22 17:26:57 软件运行成功
+2022-10-22 17:26:57 数据文件来源于: G:\data_process\imgAug\imgAugdata 增强文件保存于: G:\data_process\imgAug\imgAugAUG
+2022-10-22 17:27:49 软件运行成功
+2022-10-22 17:27:49 数据文件来源于: G:\data_process\imgAug\imgAugdata 增强文件保存于: G:\data_process\imgAug\imgAugAUG
+2022-10-22 17:29:55 软件运行成功
+2022-10-22 17:29:55 数据文件来源于: G:\data_process\imgAug\imgAugdata 增强文件保存于: G:\data_process\imgAug\imgAugAUG
+2022-10-22 17:30:10 软件运行成功
+2022-10-22 17:30:10 数据文件来源于: G:\data_process\imgAug\imgAugdata 增强文件保存于: G:\data_process\imgAug\imgAugAUG
+2022-10-22 17:30:48 软件运行成功
+2022-10-22 17:30:48 数据文件来源于: G:\data_process\imgAug\imgAugdata 增强文件保存于: G:\data_process\imgAug\imgAugAUG
+2022-10-22 17:31:11 软件运行成功
+2022-10-22 17:31:11 数据文件来源于: G:\data_process\imgAug\imgAugdata 增强文件保存于: G:\data_process\imgAug\imgAugAUG
+2022-10-22 17:32:21 当前源图片为: G:\data_process\imgAug\imgAug/data//Images\\airplane.jpg
+2022-10-22 17:32:22 当前显示的增强图片为: G:\data_process\imgAug\imgAug/AUG//Images\\airplane_0.jpg

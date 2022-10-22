@@ -635,12 +635,18 @@
      <string>Help</string>
     </property>
     <addaction name="actionshouche"/>
+    <addaction name="actionrizhi"/>
    </widget>
    <addaction name="menuHelp"/>
   </widget>
   <action name="actionshouche">
    <property name="text">
     <string>shouche</string>
+   </property>
+  </action>
+  <action name="actionrizhi">
+   <property name="text">
+    <string>rizhi</string>
    </property>
   </action>
  </widget>
