@@ -4,7 +4,7 @@ import sys
 import time
 from tool.drawBox import dbox
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtGui import QPixmap
+from PyQt5.QtGui import QPixmap, QIcon
 from PyQt5.QtWidgets import QApplication, QMainWindow, QSlider, QMenu, QAction, QFileDialog
 import tkinter as tk
 from tkinter import filedialog
@@ -311,6 +311,8 @@ class Ui_MainWindow(object):
         self.textBrowser.setGeometry(QtCore.QRect(10, 520, 1017, 329))
         self.textBrowser.setObjectName("textBrowser")
         self.horizontalSlider_4.setValue(0)
+        MainWindow.setWindowIcon(QIcon('Logo.jpg'))
+
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
