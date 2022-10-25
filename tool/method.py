@@ -183,8 +183,11 @@ def imgaug(origin_path, save_path, tfList, valueList,AUGLOOP):
         msg_list += "像素在（-" + str(abs(valueList[7])) + "," + str(abs(valueList[7])) + ")的范围内随机增强对比度,"
     # 缩放，范围在 0.5 - 1.5 之间
     if c_Affine == True:
-        seq.append(iaa.Sequential([iaa.Affine(scale=(float(valueList[10])-0.2, float(valueList[10])+0.2))]))
-        msg_list += "在" + str(float(valueList[10])-0.2) + "," + str(valueList[10]+0.2) + ")的范围内随机缩放图像,"
+        seq.append(iaa.Sequential([iaa.Affine(scale=(min(1, float(valueList[10])),max(1, float(valueList[10]))))]))
+        if float(valueList[10]) < 1:
+            msg_list += "在" + str(min(1, float(valueList[10]))) + "," + str(max(1, float(valueList[10]))) + ")的范围内随机缩小图像,"
+        else:
+            msg_list += "在" + str(min(1, float(valueList[10]))) + "," + str(max(1, float(valueList[10]))) + ")的范围内随机放大图像,"
     # 平移 X 轴
     if c_translate_x == True:
         seq.append(iaa.Sequential([iaa.Affine(translate_percent={"x": (float(valueList[3]))})]))

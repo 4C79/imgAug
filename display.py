@@ -156,6 +156,7 @@ class Ui_MainWindow(object):
         self.horizontalSlider_11.setTickPosition(QtWidgets.QSlider.TicksAbove)
         self.horizontalSlider_11.setTickInterval(1)
         self.horizontalSlider_11.setObjectName("horizontalSlider_11")
+        self.horizontalSlider_11.setValue(10)
         self.verticalLayout.addWidget(self.horizontalSlider_11)
         self.horizontalSlider_12 = QtWidgets.QSlider(self.layoutWidget)
         self.horizontalSlider_12.setOrientation(QtCore.Qt.Horizontal)
@@ -400,10 +401,10 @@ class Ui_MainWindow(object):
         content_list = os.listdir(path)
         for i in range(len(content_list)):
             self.comboBox.addItem(str(content_list[i]))
-        path = self.save_path + "//Images"
-        content_list = os.listdir(path)
-        for i in range(len(content_list)):
-            self.comboBox_2.addItem(str(content_list[i]))
+        # path = self.save_path + "//Images"
+        # content_list = os.listdir(path)
+        # for i in range(len(content_list)):
+        #     self.comboBox_2.addItem(str(content_list[i]))
         self.horizontalSlider_1.setMaximum(10)
         self.horizontalSlider_2.setMaximum(10)
         self.horizontalSlider_3.setMaximum(100)
@@ -555,8 +556,8 @@ class Ui_MainWindow(object):
             self.note.close()
         else:
             self.save_path = file_path  # 获得选择好的文件夹
-            self.textBrowser.append(tmp_time + " 新的源文件位于: " + self.origin_path)
-            self.note.write(tmp_time + " 新的源文件位于: " + self.origin_path + "\n")
+            self.textBrowser.append(tmp_time + " 新的保存位置位于: " + self.origin_path)
+            self.note.write(tmp_time + " 新的保存位置位于: " + self.origin_path + "\n")
             self.note.close()
 
         path = self.save_path + "//Images"
@@ -659,7 +660,9 @@ class Ui_MainWindow(object):
         valueList.append(self.horizontalSlider_10.value() / 10)
         valueList.append(self.horizontalSlider_11.value() / 10)
         valueList.append(self.horizontalSlider_12.value() * 10)
+        print(self.origin_path,self.test_path)
         msg_list = method.imgaug(self.origin_path, self.test_path, tfList, valueList, 1)
+        print(msg_list)
         path = self.test_path + "//Images"
         self.comboBox_2.clear()
         name = self.comboBox.currentText()
