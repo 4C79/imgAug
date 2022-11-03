@@ -1,12 +1,12 @@
-import time
-import xml.etree.ElementTree as ET
-import os
 import imgaug as ia
 import numpy as np
+import os
 import shutil
-from tqdm import tqdm
+import time
+import xml.etree.ElementTree as ET
 from PIL import Image
 from imgaug import augmenters as iaa
+from tqdm import tqdm
 
 ia.seed(1)
 
@@ -95,7 +95,7 @@ def mkdir(path):
 
 
 # 选择img，annotation的源地与目的地,增强方式，增强数量
-def imgaug(origin_path, save_path, tfList, valueList,AUGLOOP):
+def imgaug(origin_path, save_path, tfList, valueList, AUGLOOP):
     IMG_DIR = origin_path + "//Images"
     XML_DIR = origin_path + "//Annotations"
     AUG_IMG_DIR = save_path + "//Images"
@@ -162,11 +162,11 @@ def imgaug(origin_path, save_path, tfList, valueList,AUGLOOP):
         msg_list += str(float(valueList[4])) + "的概率进行像素反转,"
     # 变换图像中每个像素的像素值，参数表示增减多少（-20，20），per_channel表示是否所有通道均变化
     if c_increase == True:
-        seq.append(iaa.Sequential([iaa.Add(value=(valueList[8],-valueList[8]), per_channel=True)]))
+        seq.append(iaa.Sequential([iaa.Add(value=(valueList[8], -valueList[8]), per_channel=True)]))
         msg_list += "像素在（-" + str(abs(valueList[8])) + "," + str(abs(valueList[8])) + ")的范围内随机增减,"
     # 压缩图像，值代表程度 0-100
     if c_jpegCompression == True:
-        seq.append(iaa.Sequential([iaa.JpegCompression(compression=(0,valueList[2]))]))
+        seq.append(iaa.Sequential([iaa.JpegCompression(compression=(0, valueList[2]))]))
         msg_list += "在（0" + "," + str(abs(valueList[2])) + "%)的范围内随机进行压缩,"
     # 对图像增加高斯模糊 , scale = 0.0 - 1
     if c_GaussianNoise == True:
@@ -174,25 +174,27 @@ def imgaug(origin_path, save_path, tfList, valueList,AUGLOOP):
         msg_list += "以" + str(float(valueList[0])) + "的程度进行高斯图像模糊,"
     # 随机丢失像素，第一个参数表示丢失的数量，第二个表示在分辨率为size_percent下进行丢失
     if c_CoarseDropout == True:
-        seq.append(iaa.Sequential([iaa.CoarseDropout((0,float(valueList[5])), size_percent=0.5)]))
+        seq.append(iaa.Sequential([iaa.CoarseDropout((0, float(valueList[5])), size_percent=0.5)]))
         msg_list += "在（0" + "," + str(float(valueList[5])) + ")的范围内随机丢失图像,"
     # 对比度增强，范围在 0.5 - 1.5 之间
     if c_ContrastNormalization == True:
         print(valueList[7])
-        seq.append(iaa.Sequential([iaa.ContrastNormalization((-float(valueList[7]),float(valueList[7])))]))
+        seq.append(iaa.Sequential([iaa.ContrastNormalization((-float(valueList[7]), float(valueList[7])))]))
         msg_list += "像素在（-" + str(abs(valueList[7])) + "," + str(abs(valueList[7])) + ")的范围内随机增强对比度,"
     # 缩放，范围在 0.5 - 1.5 之间
     if c_Affine == True:
-        seq.append(iaa.Sequential([iaa.Affine(scale=(min(1, float(valueList[10])),max(1, float(valueList[10]))))]))
+        seq.append(iaa.Sequential([iaa.Affine(scale=(min(1, float(valueList[10])), max(1, float(valueList[10]))))]))
         if float(valueList[10]) < 1:
-            msg_list += "在" + str(min(1, float(valueList[10]))) + "," + str(max(1, float(valueList[10]))) + ")的范围内随机缩小图像,"
+            msg_list += "在" + str(min(1, float(valueList[10]))) + "," + str(
+                max(1, float(valueList[10]))) + ")的范围内随机缩小图像,"
         else:
-            msg_list += "在" + str(min(1, float(valueList[10]))) + "," + str(max(1, float(valueList[10]))) + ")的范围内随机放大图像,"
+            msg_list += "在" + str(min(1, float(valueList[10]))) + "," + str(
+                max(1, float(valueList[10]))) + ")的范围内随机放大图像,"
     # 平移 X 轴
     if c_translate_x == True:
         seq.append(iaa.Sequential([iaa.Affine(translate_percent={"x": (float(valueList[3]))})]))
         if float(valueList[3]) > 0:
-            msg_list += "向右移动图像" + str(abs(valueList[3])*100) + "%,"
+            msg_list += "向右移动图像" + str(abs(valueList[3]) * 100) + "%,"
         else:
             msg_list += "向左移动图像" + str(abs(valueList[3]) * 100) + "%,"
     # 平移 Y 轴
@@ -206,7 +208,6 @@ def imgaug(origin_path, save_path, tfList, valueList,AUGLOOP):
     if c_rotation == True:
         seq.append(iaa.Sequential([iaa.Affine(rotate=float(valueList[11]))]))
         msg_list += "顺时针旋转图像" + str(float(valueList[11])) + "°,"
-
 
     for name in tqdm(os.listdir(XML_DIR), desc='Processing'):
 
